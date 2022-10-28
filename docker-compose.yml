@@ -2,11 +2,11 @@ version: "3"
 services:
   node:
     image: "node:lts-alpine"
-    user: "node"
     working_dir: /home/node/app
     volumes:
       - ./server/:/home/node/app
     command: ash -c "npm i && node index.js"
+    restart: unless-stopped
   nginx:
     build:
       context: ./docker/
@@ -23,3 +23,4 @@ services:
     env_file: ./docker/fqdn.env
     entrypoint: ["sh", "/mnt/openssl/create.sh"]
     command: ["nginx", "-g", "daemon off;"]
+    restart: unless-stopped
