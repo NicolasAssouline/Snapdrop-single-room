@@ -118,6 +118,7 @@ class SnapdropServer {
             const otherPeer = this._room[otherPeerId];
             this._send(otherPeer, { type: 'peer-left', peerId: peer.id });
         }
+
     }
 
     _send(peer, message) {

@@ -2,11 +2,11 @@ version: "3"
 services:
   node:
     image: "node:lts-alpine"
-    user: "node"
     working_dir: /home/node/app
     volumes:
       - ./server/:/home/node/app
     command: ash -c "npm i && node index.js"
+    restart: unless-stopped
   nginx:
     build:
       context: ./docker/
@@ -18,8 +18,9 @@ services:
       - ./docker/certs:/etc/ssl/certs
       - ./docker/openssl:/mnt/openssl
     ports:
-      - "8080:80"
-      - "443:443"
+      - "2080:80"
+      - "2443:443"
     env_file: ./docker/fqdn.env
-    entrypoint: /mnt/openssl/create.sh
+    entrypoint: ["sh", "/mnt/openssl/create.sh"]
     command: ["nginx", "-g", "daemon off;"]
+    restart: unless-stopped
