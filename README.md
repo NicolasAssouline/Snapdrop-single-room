@@ -1,4 +1,4 @@
-By default, Snapdrop segments users into rooms based on their IP address which allows only users within a single users to see each other.
+By default, Snapdrop segments users into rooms based on their IP address which allows only users within a single network to see each other.
 This version groups all users into a single room - making it better suited for smaller, cross-network use-cases.
 
 # Snapdrop 
